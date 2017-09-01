@@ -1,0 +1,309 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"se",
+				"setPertinence"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "class Mfunction:\n\tfrom math import exp,sqrt,pi\n\n\tdef __init__(self,flag,media,dp):\n\t\tself.flag = flag # flag que representa o tipo de função\n\t\tself.media = media # media da função gaussiana\n\t\tself.dp  = dp # desvio padrao da função gaussiana\n\t\tself.pert = None #pertinencia de ativação para um determinado valor de entrada\n\n\tdef __init__(self,flag,x1,y1,x2,y2,x3,y3,x4,y4):\n\t\tself.flag = flag # flag que representa o tipo de função\n\t\tself.x1 = x1 # abissiça ponto 1\n\t\tself.x2 = x2 # abissiça ponto 2\n\t\tself.x3 = x3 # abissiça ponto 3\n\t\tself.x4 = x4 # abissiça ponto 4\n\t\tself.y1 = y1 # ordenada ponto 1\n\t\tself.y2 = y2 # ordenada ponto 2\n\t\tself.y3 = y3 # ordenada ponto 3\n\t\tself.y4 = y4 # ordenada ponto 4a\n\t\tself.pert = None #pertinencia de ativação para um determinado valor de entrada\n\n\tdef setPertinence(self,X):\n\t\tif self.flag == 1 or self.flag == 2:\n\n\t\t\tif X > self.x1 and X <= self.x2:\n\t\t\t\tself.pert = self.y1 + (self.y2 - self.y1)/(self.x2 - self.x1)*(X - self.x1)\n\t\t\telif X > self.x2 and X <= self.x3:\n\t\t\t\tself.pert = self.y2 + (self.y3 - self.y2)/(self.x3 - self.x2)*(X - self.x2)\n\t\t\telif X > self.x3 and X <= self.x4:\n\t\t\t\tself.pert = self.y3 + (self.y4 - self.y3)/(self.x4 - self.x3)*(X - self.x3)\n\t\t\telif X <= self.x1:\n\t\t\t\tself.pert = self.y1\n\t\t\telif X > self.x4:\n\t\t\t\tself.pert = self.y4\n\n\t\tif self.flag == 3:\n\n\t\t\tself.pert = exp(-1*(((X - self.media)*(X - self.media))/(2*self.dp*self.dp)))*(1/(self.dp*sqrt(2*pi)))\n\n\n\n\n\n\n\n\n",
+			"file": "/home/ronnasayd/Ifuzzy2 python/Mfunction.py",
+			"file_size": 1451,
+			"file_write_time": 131487718475395957,
+			"settings":
+			{
+				"buffer_size": 1435,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "class IMfuzzy2:\n\tdef __init__(self,lower,upper):\n\t\tself.lower = lower\n\t\tself.upper = upper\n\tdef setPertinence(self,X):\n\t\tself.lower.setPertinence(X)\n\t\tself.upper.setPertinence(X)",
+			"file": "/home/ronnasayd/Ifuzzy2 python/IMfuzzy2.py",
+			"file_size": 178,
+			"file_write_time": 131487720174098197,
+			"settings":
+			{
+				"buffer_size": 178,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "class IMfuzzy2:"
+			}
+		},
+		{
+			"contents": "from IMfuzzy2 import IMfuzzy2\nfrom Mfunction import Mfunction\n\nTRAP = 1\nTRIA = 2\nGAUS = 3\n\nupper = Mfunction(TRAP,0,0,2.5,1,5,1,5,1)\nlower = Mfunction(TRAP,0,0,2.5,0.8,5,0.8,5,0.8)\n\nAlta = IMfuzzy2(lower,upper)",
+			"file": "/home/ronnasayd/Ifuzzy2 python/teste.py",
+			"file_size": 204,
+			"file_write_time": 131487694897426725,
+			"settings":
+			{
+				"buffer_size": 210,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/ronnasayd/Ifuzzy2py"
+	],
+	"file_history":
+	[
+		"/home/ronnasayd/Ifuzzy2 python/test.py",
+		"/home/ronnasayd/Ifuzzy2 python/triangular.py",
+		"/home/ronnasayd/Ifuzzy2 python/trapezoide.py",
+		"/media/ronnasayd/ARQUIVOS/BACKUP/PROGRAMAÇÃO/opencv_examples/example2-1/example2-1.depend",
+		"/media/ronnasayd/ARQUIVOS/BACKUP/PROGRAMAÇÃO/opencv_examples/example2-1/example2-1.layout",
+		"/media/ronnasayd/ARQUIVOS/BACKUP/PROGRAMAÇÃO/opencv_examples/example2-1/main.cpp",
+		"/media/ronnasayd/ARQUIVOS/BACKUP/PROGRAMAÇÃO/opencv_examples/example2-1/example2-1.cbp",
+		"/media/ronnasayd/ARQUIVOS/OneDrive/IA cartola/showTimeFinal.py",
+		"/media/ronnasayd/ARQUIVOS/OneDrive/IA cartola/getDataUltimasPartidas.py",
+		"/media/ronnasayd/ARQUIVOS/OneDrive/IA cartola/getJogosBra2017.py",
+		"/media/ronnasayd/ARQUIVOS/OneDrive/IA cartola/montDataPartidas.m",
+		"/media/ronnasayd/ARQUIVOS/OneDrive/IA cartola/penaltyTime.m",
+		"/home/ronnasayd/teste_opencv/opencvteste/main.cpp"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/home/ronnasayd/Ifuzzy2 python/Mfunction.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1435,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								793,
+								793
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 2.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/ronnasayd/Ifuzzy2 python/IMfuzzy2.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 178,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								178,
+								178
+							]
+						],
+						"settings":
+						{
+							"auto_name": "class IMfuzzy2:",
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/ronnasayd/Ifuzzy2 python/teste.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 210,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								210,
+								210
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Ifuzzy2py.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 175.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
