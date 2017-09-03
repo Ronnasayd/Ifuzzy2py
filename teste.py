@@ -53,16 +53,16 @@ outputs.addOutput(O)
 
 
 ant = Antescedent()
-ant.addMf(BaixaI,1)
+ant.addMf(BaixaI)
 cont = Consequent()
-cont.addMf(AltaO,1)
+cont.addMf(AltaO)
 rule = Rule(ant,cont)
 rules.addRule(rule)
 
 ant = Antescedent()
-ant.addMf(AltaI,1)
+ant.addMf(AltaI)
 cont = Consequent()
-cont.addMf(BaixaO,1)
+cont.addMf(BaixaO)
 rule = Rule(ant,cont)
 rules.addRule(rule)
 
