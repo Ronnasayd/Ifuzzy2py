@@ -36,11 +36,11 @@ upperAO = Mfunction(TRIA,None,None,2,0,3.5,1,3.5,1,5,0)
 lowerAO = Mfunction(TRIA,None,None,2.5,0,3.5,1,3.5,1,4.5,0)
 AltaO =  IMfuzzy2(lowerAO,upperAO)
 
-I = Input()
+I = Input(0,5)
 I.addMf(BaixaI)
 I.addMf(AltaI)
 
-O = Output()
+O = Output(0,5)
 O.addMf(BaixaO)
 O.addMf(AltaO)
 
