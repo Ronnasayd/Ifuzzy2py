@@ -48,7 +48,7 @@ inputs = Inputs()
 inputs.addInput(I)
 
 outputs = Outputs()
-outputs = addOutput(O)
+outputs.addOutput(O)
 
 
 

@@ -4,6 +4,7 @@ class Mfunction:
 
 	def __init__(self,flag=3,media=None,dp=None,x1=None,y1=None,x2=None,y2=None,x3=None,y3=None,x4=None,y4=None):
 		self.flag = flag
+		self.pilha = []
 		if self.flag == 3:
 			self.media = media # media da função gaussiana
 			self.dp  = dp # desvio padrao da função gaussiana
@@ -35,6 +36,14 @@ class Mfunction:
 
 		if self.flag == 3:
 			self.pert = exp(-1*(((X - self.media)*(X - self.media))/(2*self.dp*self.dp)))*(1/(self.dp*sqrt(2*pi)))
+
+
+	def addPert(self):
+		m = 1
+		for i in range(len(self.pilha)):
+			if self.pilha[i] < m:
+				m = self.pilha[i]
+		self.pert = m
 
 
 

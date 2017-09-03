@@ -22,7 +22,16 @@ class Ifuzzy2:
 				if self.rules.rule[i].antescedent.Mf[j].upper.pert > maxUpper:
 					maxUpper = self.rules.rule[i].antescedent.Mf[j].upper.pert
 
-			print([i,maxUpper,maxLower])
+			for k in range(self.rules.rule[i].consequent.qtdMf):
+				self.rules.rule[i].consequent.Mf[k].lower.pilha.append(maxLower)
+				self.rules.rule[i].consequent.Mf[k].upper.pilha.append(maxUpper)
+
+			#print([i,maxUpper,maxLower])
+
+		for i in range(self.outputs.qtdOutput):
+			for j in range(self.outputs.output[i].qtdMf):
+				self.outputs.output[i].Mf[j].addPert()
+				self.outputs.output[i].Mf[j].resetPilha()
 
 
 
