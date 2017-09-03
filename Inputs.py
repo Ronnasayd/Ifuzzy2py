@@ -1,5 +1,7 @@
 class Inputs:
 	def __init__(self):
-		self.inputs = []
+		self.input= []
+		self.qtdInput = 0
 	def addInput(self,input):
-		self.inputs.append(input)
+		self.input.append(input)
+		self.qtdInput = self.qtdInput + 1

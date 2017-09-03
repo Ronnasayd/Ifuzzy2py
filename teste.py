@@ -18,22 +18,22 @@ rules = Rules()
 
 
 
-lowerBI = Mfunction(TRIA,None,None,0,0,1.5,1,1.5,1,3,0)
-upperBI = Mfunction(TRIA,None,None,0.5,0,1.5,1,1.5,1,2.5,0)
+upperBI = Mfunction(TRIA,None,None,0,0,1.5,1,1.5,1,3,0)
+lowerBI = Mfunction(TRIA,None,None,0.5,0,1.5,1,1.5,1,2.5,0)
 BaixaI = IMfuzzy2(lowerBI,upperBI)
 
 
-lowerAI = Mfunction(TRIA,None,None,2,0,3.5,1,3.5,1,5,0)
-upperAI = Mfunction(TRIA,None,None,2.5,0,3.5,1,3.5,1,4.5,0)
+upperAI = Mfunction(TRIA,None,None,2,0,3.5,1,3.5,1,5,0)
+lowerAI = Mfunction(TRIA,None,None,2.5,0,3.5,1,3.5,1,4.5,0)
 AltaI =  IMfuzzy2(lowerAI,upperAI)
 
-lowerBO = Mfunction(TRIA,None,None,0,0,1.5,1,1.5,1,3,0)
-upperBO = Mfunction(TRIA,None,None,0.5,0,1.5,1,1.5,1,2.5,0)
+upperBO = Mfunction(TRIA,None,None,0,0,1.5,1,1.5,1,3,0)
+lowerBO = Mfunction(TRIA,None,None,0.5,0,1.5,1,1.5,1,2.5,0)
 BaixaO = IMfuzzy2(lowerBO,upperBO)
 
 
-lowerAO = Mfunction(TRIA,None,None,2,0,3.5,1,3.5,1,5,0)
-upperAO = Mfunction(TRIA,None,None,2.5,0,3.5,1,3.5,1,4.5,0)
+upperAO = Mfunction(TRIA,None,None,2,0,3.5,1,3.5,1,5,0)
+lowerAO = Mfunction(TRIA,None,None,2.5,0,3.5,1,3.5,1,4.5,0)
 AltaO =  IMfuzzy2(lowerAO,upperAO)
 
 I = Input()
@@ -68,3 +68,5 @@ rules.addRule(rule)
 
 
 fuzzy = Ifuzzy2(inputs,outputs,rules,1000)
+fuzzy.fuzzyfication([2.6])
+fuzzy.inference()

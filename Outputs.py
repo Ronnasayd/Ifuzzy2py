@@ -1,5 +1,7 @@
 class Outputs:
 	def __init__(self):
-		self.outputs = []
+		self.output = []
+		self.qtdOutput = 0
 	def addOutput(self,output):
-		self.outputs.append(output)
+		self.output.append(output)
+		self.qtdOutput = self.qtdOutput + 1
