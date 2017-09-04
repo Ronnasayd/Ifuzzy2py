@@ -46,7 +46,7 @@ class Ifuzzy2:
 		for i in range(self.outputs.qtdOutput):
 			interation = (self.outputs.output[i].end - self.outputs.output[i].init)/self.N
 			num = 0
-			den = 0
+			den = 1e-323
 			point =  self.outputs.output[i].init
 			for j in range(self.N + 1):
 				points.append(point)
@@ -79,7 +79,7 @@ class Ifuzzy2:
 			delimiter = delimiterGeneral
 			while(True):
 				num = 0
-				den = 0
+				den = 1e-323
 				for k in range(delimiter+1):
 					num = num + points[k]*upper[k]
 					den = den + upper[k]
@@ -105,7 +105,7 @@ class Ifuzzy2:
 			delimiter = delimiterGeneral
 			while(True):
 				num = 0
-				den = 0
+				den =1e-323
 				for k in range(delimiter+1):
 					num = num + points[k]*lower[k]
 					den = den + lower[k]
