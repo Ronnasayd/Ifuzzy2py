@@ -4,6 +4,8 @@ class Ifuzzy2:
 		self.outputs = outputs
 		self.rules = rules
 		self.N = N
+		self.yl = []
+		self.yr = []
 		
 	def fuzzyfication(self,X):
 		lx = len(X)
@@ -32,6 +34,115 @@ class Ifuzzy2:
 			for j in range(self.outputs.output[i].qtdMf):
 				self.outputs.output[i].Mf[j].addPert()
 				self.outputs.output[i].Mf[j].resetPilha()
+
+
+	def typeReduction(self):
+		# Karnik and Mendel type reduction
+		points = []
+		lower = []
+		upper = []
+		self.yl = []
+		self.yr = []
+		for i in range(self.outputs.qtdOutput):
+			interation = (self.outputs.output[i].end - self.outputs.output[i].init)/self.N
+			num = 0
+			den = 0
+			point =  self.outputs.output[i].init
+			for j in range(self.N + 1):
+				points.append(point)
+				auxlower = []
+				auxupper = []
+				for k  in range(self.outputs.output[i].qtdMf):
+					auxlower.append(self.outputs.output[i].Mf[k].lower.getPertinence(point))
+					auxupper.append(self.outputs.output[i].Mf[k].upper.getPertinence(point))
+
+				l = max(auxlower)
+				lower.append(l)
+				u = max(auxupper)
+				upper.append(u)
+				#print(point,l,u)
+
+				den = den + (l + u)/2
+				num = num + ((l + u)/2)*point
+
+				point = point + interation
+			ykGeneral = num/den
+			#print(yk)
+
+			for k in range(self.N+1):
+				if points[k] >= ykGeneral:
+					delimiterGeneral = k - 1
+					break
+			
+
+			yk = ykGeneral
+			delimiter = delimiterGeneral
+			while(True):
+				num = 0
+				den = 0
+				for k in range(delimiter+1):
+					num = num + points[k]*upper[k]
+					den = den + upper[k]
+				
+
+				for k in range(delimiter+1,self.N+1):
+					num = num + points[k]*lower[k]
+					den = den + lower[k]
+
+				yl = num/den
+				#print(yl,yk,delimiter)
+				if (yl == yk):
+					self.yl.append(yl)
+					break
+				else:
+					yk = yl
+					for k in range(self.N+1):
+						if points[k] >= yk:
+							delimiter = k - 1
+							break
+
+			yk = ykGeneral
+			delimiter = delimiterGeneral
+			while(True):
+				num = 0
+				den = 0
+				for k in range(delimiter+1):
+					num = num + points[k]*lower[k]
+					den = den + lower[k]
+				
+
+				for k in range(delimiter+1,self.N+1):
+					num = num + points[k]*upper[k]
+					den = den + upper[k]
+
+				yr = num/den
+				#print(yr,yk,delimiter)
+				if (yr == yk):
+					self.yr.append(yr)
+					break
+				else:
+					yk = yr
+					for k in range(self.N+1):
+						if points[k] >= yk:
+							delimiter = k - 1
+							break
+
+	def defuzzyfication(self,ind):
+		return (self.yl[ind-1] + self.yr[ind-1])/2
+
+	def fuzzyfy(self,X):
+		self.fuzzyfication(X)
+		self.inference()
+	def defuzzyfy(self,ind):
+		self.typeReduction()
+		return self.defuzzyfication(ind)
+
+
+
+
+
+
+
 
 
 

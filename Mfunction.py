@@ -45,6 +45,29 @@ class Mfunction:
 				m = self.pilha[i]
 		self.pert = m
 
+	def getPertinence(self,X):
+		if self.flag == 1 or self.flag == 2:
+
+			if X > self.x1 and X <= self.x2:
+				auxVal = self.y1 + (self.y2 - self.y1)/(self.x2 - self.x1)*(X - self.x1)
+			elif X > self.x2 and X <= self.x3:
+				auxVal = self.y2 + (self.y3 - self.y2)/(self.x3 - self.x2)*(X - self.x2)
+			elif X > self.x3 and X <= self.x4:
+				auxVal = self.y3 + (self.y4 - self.y3)/(self.x4 - self.x3)*(X - self.x3)
+			elif X <= self.x1:
+				auxVal = self.y1
+			elif X > self.x4:
+				auxVal = self.y4
+
+		if self.flag == 3:
+			auxVal = exp(-1*(((X - self.media)*(X - self.media))/(2*self.dp*self.dp)))*(1/(self.dp*sqrt(2*pi)))
+
+		if auxVal < self.pert:
+			return auxVal
+		else:
+			return self.pert
+
+
 
 
 
