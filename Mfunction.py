@@ -1,4 +1,4 @@
-from math import exp,sqrt,pi
+from math import exp
 class Mfunction:
 	
 
@@ -35,7 +35,7 @@ class Mfunction:
 				self.pert = self.y4
 
 		if self.flag == 3:
-			self.pert = exp(-1*(((X - self.media)*(X - self.media))/(2*self.dp*self.dp)))*(1/(self.dp*sqrt(2*pi)))
+			self.pert = exp(-1*(((X - self.media)*(X - self.media))/(2*self.dp*self.dp)))
 
 
 	def addPert(self):
@@ -60,7 +60,7 @@ class Mfunction:
 				auxVal = self.y4
 
 		if self.flag == 3:
-			auxVal = exp(-1*(((X - self.media)*(X - self.media))/(2*self.dp*self.dp)))*(1/(self.dp*sqrt(2*pi)))
+			auxVal = exp(-1*(((X - self.media)*(X - self.media))/(2*self.dp*self.dp)))
 
 		if auxVal < self.pert:
 			return auxVal
