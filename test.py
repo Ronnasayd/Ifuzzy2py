@@ -74,4 +74,4 @@ for x in range(0,6):
 	print(fuzzy.yl,fuzzy.yr,y)
 
 
-print('fim')
+
