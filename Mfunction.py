@@ -16,12 +16,12 @@ limitations under the License.
 from math import exp
 class Mfunction:
 
-	def __init__(self,flag=3,media=None,dp=None,x1=None,y1=None,x2=None,y2=None,x3=None,y3=None,x4=None,y4=None):
+	def __init__(self,flag=3,mean=None,dp=None,x1=None,y1=None,x2=None,y2=None,x3=None,y3=None,x4=None,y4=None):
 		""" Creates a Membership function object (flag: Trapezoid = 1 ; Triangle = 2 ; Gaussian = 3)"""
 		self.flag = flag
 		self.stack = []
 		if self.flag == 3:
-			self.media = media 
+			self.mean = mean 
 			self.dp  = dp 
 			self.pert = None 
 		else:
@@ -51,7 +51,7 @@ class Mfunction:
 				self.pert = self.y4
 
 		if self.flag == 3:
-			self.pert = exp(-1*(((X - self.media)*(X - self.media))/(2*self.dp*self.dp)))
+			self.pert = exp(-1*(((X - self.mean)*(X - self.mean))/(2*self.dp*self.dp)))
 
 
 	def addPert(self):
@@ -78,7 +78,7 @@ class Mfunction:
 				auxVal = self.y4
 
 		if self.flag == 3:
-			auxVal = exp(-1*(((X - self.media)*(X - self.media))/(2*self.dp*self.dp)))
+			auxVal = exp(-1*(((X - self.mean)*(X - self.mean))/(2*self.dp*self.dp)))
 
 		if auxVal < self.pert:
 			return auxVal
