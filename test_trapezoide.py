@@ -1,6 +1,6 @@
 from IMfuzzy2 import IMfuzzy2
 from Mfunction import Mfunction
-from Antescedent import Antescedent
+from Antecedent import Antecedent
 from Consequent import Consequent
 from Rule import Rule
 from Rules import Rules
@@ -52,14 +52,14 @@ outputs.addOutput(O)
 
 
 
-ant = Antescedent()
+ant = Antecedent()
 ant.addMf(BaixaI)
 cont = Consequent()
 cont.addMf(AltaO)
 rule = Rule(ant,cont)
 rules.addRule(rule)
 
-ant = Antescedent()
+ant = Antecedent()
 ant.addMf(AltaI)
 cont = Consequent()
 cont.addMf(BaixaO)
@@ -71,7 +71,8 @@ fuzzy = Ifuzzy2(inputs,outputs,rules,1000)
 for x in range(0,6):
 	fuzzy.fuzzyfy([x])
 	y = fuzzy.defuzzyfy(1)
-	print(fuzzy.yl,fuzzy.yr,y)
+	[yl,yr] = fuzzy.getReducedFuzzy(1)
+	print(yl,yr,y)
 
 
 

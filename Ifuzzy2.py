@@ -1,5 +1,6 @@
 class Ifuzzy2:
 	def __init__(self,inputs=[],outputs=[],rules=[],N=1000):
+		""" Creates a fuzzy object """
 		self.inputs = inputs
 		self.outputs = outputs
 		self.rules = rules
@@ -8,6 +9,7 @@ class Ifuzzy2:
 		self.yr = []
 		
 	def fuzzyfication(self,X):
+		""" Makes the fuzzyfication step for the vector input"""
 		lx = len(X)
 		if lx == self.inputs.qtdInput:
 			for i in range(lx):
@@ -15,29 +17,30 @@ class Ifuzzy2:
 					self.inputs.input[i].Mf[j].setPertinence(X[i])
 
 	def inference(self):
+		""" Makes the inference step """
 		for i in range(self.rules.qtdRule):
 			maxLower = 0
 			maxUpper = 0
-			for j in range(self.rules.rule[i].antescedent.qtdMf):
-				if self.rules.rule[i].antescedent.Mf[j].lower.pert > maxLower:
-					maxLower = self.rules.rule[i].antescedent.Mf[j].lower.pert
-				if self.rules.rule[i].antescedent.Mf[j].upper.pert > maxUpper:
-					maxUpper = self.rules.rule[i].antescedent.Mf[j].upper.pert
+			for j in range(self.rules.rule[i].antecedent.qtdMf):
+				if self.rules.rule[i].antecedent.Mf[j].lower.pert > maxLower:
+					maxLower = self.rules.rule[i].antecedent.Mf[j].lower.pert
+				if self.rules.rule[i].antecedent.Mf[j].upper.pert > maxUpper:
+					maxUpper = self.rules.rule[i].antecedent.Mf[j].upper.pert
 
 			for k in range(self.rules.rule[i].consequent.qtdMf):
-				self.rules.rule[i].consequent.Mf[k].lower.pilha.append(maxLower)
-				self.rules.rule[i].consequent.Mf[k].upper.pilha.append(maxUpper)
+				self.rules.rule[i].consequent.Mf[k].lower.stack.append(maxLower)
+				self.rules.rule[i].consequent.Mf[k].upper.stack.append(maxUpper)
 
 			#print([i,maxUpper,maxLower])
 
 		for i in range(self.outputs.qtdOutput):
 			for j in range(self.outputs.output[i].qtdMf):
 				self.outputs.output[i].Mf[j].addPert()
-				self.outputs.output[i].Mf[j].resetPilha()
+				self.outputs.output[i].Mf[j].resetstack()
 
-
+ 
 	def typeReduction(self):
-		# Karnik and Mendel type reduction
+		""" Makes the type reduction step with the Karnik and Mendel algorithm """
 		points = []
 		lower = []
 		upper = []
@@ -126,14 +129,20 @@ class Ifuzzy2:
 						if points[k] >= yk:
 							delimiter = k - 1
 							break
+	def getReducedFuzzy(self,ind):
+		""" Returns the reduced fuzzy values for the karnik mendel algorithm """
+		return [self.yl[ind-1],self.yr[ind-1]]
 
 	def defuzzyfication(self,ind):
+		""" Makes the defuzzyfication step """
 		return (self.yl[ind-1] + self.yr[ind-1])/2
 
 	def fuzzyfy(self,X):
+		""" Makes the fuzzyfication and inference steps """
 		self.fuzzyfication(X)
 		self.inference()
 	def defuzzyfy(self,ind):
+		""" Makes the type reduction and defuzzyfication steps """
 		self.typeReduction()
 		return self.defuzzyfication(ind)
 
