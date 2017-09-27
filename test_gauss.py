@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 """
 Copyright 2017 Ronnasayd Machado <ronnasayd@hotmail.com>
 
@@ -13,6 +15,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+
 from IMfuzzy2 import IMfuzzy2
 from Mfunction import Mfunction
 from Antecedent import Antecedent
@@ -31,31 +34,27 @@ GAUS = 3
 
 rules = Rules()
 
+upperBI = Mfunction(GAUS, 2, 0.8)
+lowerBI = Mfunction(GAUS, 2, 0.2)
+BaixaI = IMfuzzy2(lowerBI, upperBI)
 
+upperAI = Mfunction(GAUS, 3, 0.8)
+lowerAI = Mfunction(GAUS, 3, 0.2)
+AltaI = IMfuzzy2(lowerAI, upperAI)
 
-upperBI = Mfunction(GAUS,2,0.8)
-lowerBI = Mfunction(GAUS,2,0.2)
-BaixaI = IMfuzzy2(lowerBI,upperBI)
+upperBO = Mfunction(GAUS, 2, 0.8)
+lowerBO = Mfunction(GAUS, 2, 0.2)
+BaixaO = IMfuzzy2(lowerBO, upperBO)
 
+upperAO = Mfunction(GAUS, 3, 0.8)
+lowerAO = Mfunction(GAUS, 3, 0.2)
+AltaO = IMfuzzy2(lowerAO, upperAO)
 
-upperAI = Mfunction(GAUS,3,0.8)
-lowerAI = Mfunction(GAUS,3,0.2)
-AltaI =  IMfuzzy2(lowerAI,upperAI)
-
-upperBO = Mfunction(GAUS,2,0.8)
-lowerBO = Mfunction(GAUS,2,0.2)
-BaixaO = IMfuzzy2(lowerBO,upperBO)
-
-
-upperAO = Mfunction(GAUS,3,0.8)
-lowerAO = Mfunction(GAUS,3,0.2)
-AltaO =  IMfuzzy2(lowerAO,upperAO)
-
-I = Input(0,5)
+I = Input(0, 5)
 I.addMf(BaixaI)
 I.addMf(AltaI)
 
-O = Output(0,5)
+O = Output(0, 5)
 O.addMf(BaixaO)
 O.addMf(AltaO)
 
@@ -65,29 +64,26 @@ inputs.addInput(I)
 outputs = Outputs()
 outputs.addOutput(O)
 
-
-
 ant = Antecedent()
 ant.addMf(BaixaI)
 cont = Consequent()
 cont.addMf(AltaO)
-rule = Rule(ant,cont)
+rule = Rule(ant, cont)
 rules.addRule(rule)
 
 ant = Antecedent()
 ant.addMf(AltaI)
 cont = Consequent()
 cont.addMf(BaixaO)
-rule = Rule(ant,cont)
+rule = Rule(ant, cont)
 rules.addRule(rule)
 
-
-fuzzy = Ifuzzy2(inputs,outputs,rules,1000)
-for x in range(0,6):
-	fuzzy.fuzzyfy([x])
-	y = fuzzy.defuzzyfy(1)
-	[yl,yr] = fuzzy.getReducedFuzzy(1)
-	print(yl,yr,y)
-
+fuzzy = Ifuzzy2(inputs, outputs, rules,99)
+for x in range(0, 6):
+    fuzzy.fuzzyfy([x])
+    y = fuzzy.defuzzyfy(1)
+    [yl, yr] = fuzzy.getReducedFuzzy(1)
+    print (yl,":", yr,":", y)
 
 
+			

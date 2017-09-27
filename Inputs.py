@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 """
 Copyright 2017 Ronnasayd Machado <ronnasayd@hotmail.com>
 
@@ -13,13 +15,23 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+
+
 class Inputs:
-	def __init__(self):
-		""" Creates an Inputs object """
-		self.input= []
-		self.qtdInput = 0
-	def addInput(self,input):
-		""" Add Memership functions to an Inputs object, 
-		and updates the amount of membership functions added to this object """
-		self.input.append(input)
-		self.qtdInput = self.qtdInput + 1
+
+    def __init__(self):
+        """ Creates an Inputs object """
+
+        self.input = []
+        self.qtdInput = 0
+
+    def addInput(self, input):
+        """ Add Memership functions to an Inputs object, 
+........and updates the amount of membership functions added to this object """
+
+        self.input.append(input)
+        self.qtdInput = self.qtdInput + 1
+
+
+
+			

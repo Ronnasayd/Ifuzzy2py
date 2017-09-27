@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 """
 Copyright 2017 Ronnasayd Machado <ronnasayd@hotmail.com>
 
@@ -13,8 +15,16 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+
+
 class Rule:
-	def __init__(self,ant = None,cons = None):
-		""" Creates a rule object with this antecedent and consequent objects """
-		self.antecedent = ant
-		self.consequent = cons
+
+    def __init__(self, ant=None, cons=None):
+        """ Creates a rule object with this antecedent and consequent objects """
+
+        self.antecedent = ant
+        self.consequent = cons
+
+
+
+			
