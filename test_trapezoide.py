@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
 Copyright 2017 Ronnasayd Machado <ronnasayd@hotmail.com>
@@ -174,7 +174,7 @@ cont.addMf(BaixaO)
 rule = Rule(ant, cont)
 rules.addRule(rule)
 
-fuzzy = Ifuzzy2(inputs, outputs, rules, 124)
+fuzzy = Ifuzzy2(inputs, outputs, rules,99)
 for x in range(0, 6):
     fuzzy.fuzzyfy([x])
     y = fuzzy.defuzzyfy(1)
@@ -182,4 +182,4 @@ for x in range(0, 6):
     print (yl,":",yr,":",y)
 
 
-			
+            

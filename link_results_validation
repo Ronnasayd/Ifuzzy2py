@@ -2,3 +2,5 @@ http://ritweb.cloudapp.net:8080/JuzzyOnline/gensys?type=i2&name=teste%20ifuzzy2p
 
 
 http://ritweb.cloudapp.net:8080/JuzzyOnline/gensys?type=i2&name=teste_Ifuzzy2py_gauss&input=in&lb=0.0&ub=5.0&mfnb=2&mf=baixaI&fun=gaussian&p=2.0_0.8_2.0_0.2&mf=altaI&fun=gaussian&p=3.0_0.8_3.0_0.2&output=out&lb=0.0&ub=5.0&mfnb=2&mf=baixaO&fun=gaussian&p=2.0_0.8_2.0_0.2&mf=altaO&fun=gaussian&p=3.0_0.8_3.0_0.2&if=0_0&then=0_1&if=0_1&then=0_0
+
+http://ritweb.cloudapp.net:8080/JuzzyOnline/gensys?type=i2&name=teste%20ifuzzy2py&input=in1&lb=0.0&ub=5.0&mfnb=2&mf=BI1&fun=trapezoidal&p=0.0_0.0_2.0_4.0_0.0_0.0_0.0_2.0&mf=AI1&fun=trapezoidal&p=1.0_3.0_5.0_5.0_3.0_5.0_5.0_5.0&input=in2&lb=0.0&ub=5.0&mfnb=2&mf=BI2&fun=trapezoidal&p=0.0_0.0_2.0_4.0_0.0_0.0_0.0_2.0&mf=AI2&fun=trapezoidal&p=1.0_3.0_5.0_5.0_3.0_5.0_5.0_5.0&output=out1&lb=0.0&ub=5.0&mfnb=2&mf=BO1&fun=trapezoidal&p=0.0_0.0_2.0_4.0_0.0_0.0_0.0_2.0&mf=AO1&fun=trapezoidal&p=1.0_3.0_5.0_5.0_3.0_5.0_5.0_5.0&output=out2&lb=0.0&ub=5.0&mfnb=2&mf=BO2&fun=trapezoidal&p=0.0_0.0_2.0_4.0_0.0_0.0_0.0_2.0&mf=AO2&fun=trapezoidal&p=1.0_3.0_5.0_5.0_3.0_5.0_5.0_5.0&if=0_0&then=0_1&if=0_1&then=0_0&if=1_0&then=1_1&if=1_1&then=1_0&al=xumu

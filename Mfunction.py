@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
 Copyright 2017 Ronnasayd Machado <ronnasayd@hotmail.com>
@@ -56,26 +56,31 @@ class Mfunction:
 
     def setPertinence(self, X):
         """ Set internal pertinence for calculations """
-
+        val = 0.0
         if self.flag == 1 or self.flag == 2:
 
             if X > self.x1 and X <= self.x2:
-                self.pert = self.y1 + (self.y2 - self.y1) / (self.x2
+                val = self.y1 + (self.y2 - self.y1) / (self.x2
                         - self.x1) * (X - self.x1)
             elif X > self.x2 and X <= self.x3:
-                self.pert = self.y2 + (self.y3 - self.y2) / (self.x3
+                val = self.y2 + (self.y3 - self.y2) / (self.x3
                         - self.x2) * (X - self.x2)
             elif X > self.x3 and X <= self.x4:
-                self.pert = self.y3 + (self.y4 - self.y3) / (self.x4
+                val = self.y3 + (self.y4 - self.y3) / (self.x4
                         - self.x3) * (X - self.x3)
             elif X <= self.x1:
-                self.pert = self.y1
+                val = self.y1
             elif X >= self.x4:
-                self.pert = self.y4
+                val = self.y4
 
         if self.flag == 3:
-            self.pert = exp(-1 * ((X - self.mean) * (X - self.mean)
+            val = exp(-1 * ((X - self.mean) * (X - self.mean)
                             / (2 * self.dp * self.dp)))
+        if abs(1-val)<0.000001:
+            val = 1.0
+        if abs(val) < 0.000001:
+            val = 0.0
+        self.pert = val
 
     def addPert(self):
         """ Adds the resultant pertinence of a inference module to the output membeship function """
@@ -108,6 +113,11 @@ class Mfunction:
         if self.flag == 3:
             auxVal = exp(-1 * ((X - self.mean) * (X - self.mean) / (2
                          * self.dp * self.dp)))
+        #print(auxVal,"-",self.pert)
+        #if abs(1-auxVal)<0.000001:
+            #auxVal = 1.0
+        #if abs(auxVal) < 0.000001:
+            #auxVal = 0.0
 
         if auxVal < self.pert:
             return auxVal

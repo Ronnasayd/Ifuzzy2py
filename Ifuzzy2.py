@@ -32,8 +32,8 @@ class Ifuzzy2:
         self.outputs = outputs
         self.rules = rules
         self.N = N
-        self.yl = []
-        self.yr = []
+        self.yal = []
+        self.yar = []
 
     def fuzzyfication(self, X):
         """ Makes the fuzzyfication step for the vector input"""
@@ -51,21 +51,17 @@ class Ifuzzy2:
             maxLower = 0
             maxUpper = 0
             for j in range(self.rules.rule[i].antecedent.qtdMf):
-                if self.rules.rule[i].antecedent.Mf[j].lower.pert \
-                    > maxLower:
-                    maxLower = \
-                        self.rules.rule[i].antecedent.Mf[j].lower.pert
-                if self.rules.rule[i].antecedent.Mf[j].upper.pert \
-                    > maxUpper:
-                    maxUpper = \
-                        self.rules.rule[i].antecedent.Mf[j].upper.pert
+                if self.rules.rule[i].antecedent.Mf[j].lower.pert > maxLower:
+                    maxLower = self.rules.rule[i].antecedent.Mf[j].lower.pert
+                if self.rules.rule[i].antecedent.Mf[j].upper.pert > maxUpper:
+                    maxUpper = self.rules.rule[i].antecedent.Mf[j].upper.pert
 
             for k in range(self.rules.rule[i].consequent.qtdMf):
                 self.rules.rule[i].consequent.Mf[k].lower.stack.append(maxLower)
                 self.rules.rule[i].consequent.Mf[k].upper.stack.append(maxUpper)
 
-            # print([i,maxUpper,maxLower])
-
+            #print([i,maxUpper,maxLower])
+            #print(self.rules.rule[i].consequent.Mf[0].lower.stack)
         for i in range(self.outputs.qtdOutput):
             for j in range(self.outputs.output[i].qtdMf):
                 self.outputs.output[i].Mf[j].addPert()
@@ -73,20 +69,19 @@ class Ifuzzy2:
 
     def typeReduction(self):
         """ Makes the type reduction step with the Karnik and Mendel algorithm """
-
-        points = []
-        lower = []
-        upper = []
-        self.yl = []
-        self.yr = []
+        self.yal = []
+        self.yar = []
         for i in range(self.outputs.qtdOutput):
+            points = []
+            lower = []
+            upper = []
             interation = (self.outputs.output[i].end
                           - self.outputs.output[i].init) / self.N
 
             # print('interation',interation)
 
             num = 0
-            den = 1e-323
+            den = 5e-324
             point = self.outputs.output[i].init
             for j in range(self.N + 1):
                 points.append(point)
@@ -95,6 +90,7 @@ class Ifuzzy2:
                 for k in range(self.outputs.output[i].qtdMf):
                     auxlower.append(self.outputs.output[i].Mf[k].lower.getPertinence(point))
                     auxupper.append(self.outputs.output[i].Mf[k].upper.getPertinence(point))
+                    #print(i,k,self.outputs.output[0].Mf[k].lower.getPertinence(point),self.outputs.output[1].Mf[k].lower.getPertinence(point))
 
                 l = max(auxlower)
                 lower.append(l)
@@ -123,7 +119,7 @@ class Ifuzzy2:
 
             while True:
                 num = 0
-                den = 1e-323
+                den = 5e-324
 
                 # print('yl:',points[delimiter],yk,points[delimiter+1],delimiter)
 
@@ -137,10 +133,12 @@ class Ifuzzy2:
 
                 yl = num / den
 
-                # print(yl,yk,delimiter)
+                #print(yl,yk,delimiter)
 
-                if yl == yk:
-                    self.yl.append(yl)
+                if abs(yl - yk) < 0.001:
+                    #print(yl)
+                    self.yal.append(yl)
+                    #print(i,self.yal)
                     break
                 else:
                     yk = yl
@@ -156,7 +154,7 @@ class Ifuzzy2:
 
             while True:
                 num = 0
-                den = 1e-323
+                den = 5e-324
                 for k in range(delimiter + 1):
                     num = num + points[k] * lower[k]
                     den = den + lower[k]
@@ -169,8 +167,8 @@ class Ifuzzy2:
 
                 # print(yr,yk,delimiter)
 
-                if yr == yk:
-                    self.yr.append(yr)
+                if abs(yr - yk)<0.001:
+                    self.yar.append(yr)
                     break
                 else:
                     yk = yr
@@ -182,12 +180,12 @@ class Ifuzzy2:
     def getReducedFuzzy(self, ind):
         """ Returns the reduced fuzzy values for the karnik mendel algorithm """
 
-        return [self.yl[ind - 1], self.yr[ind - 1]]
+        return [self.yal[ind - 1], self.yar[ind - 1]]
 
     def defuzzyfication(self, ind):
         """ Makes the defuzzyfication step """
 
-        return (self.yl[ind - 1] + self.yr[ind - 1]) / 2
+        return (self.yal[ind - 1] + self.yar[ind - 1]) / 2
 
     def fuzzyfy(self, X):
         """ Makes the fuzzyfication and inference steps """
