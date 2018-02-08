@@ -50,22 +50,29 @@ class Ifuzzy2:
         for i in range(self.rules.qtdRule):
             maxLower = 0
             maxUpper = 0
+            #auxL = []
+            #auxU = []
             for j in range(self.rules.rule[i].antecedent.qtdMf):
+                #auxL.append(self.rules.rule[i].antecedent.Mf[j].lower.pert)
+                #auxU.append(self.rules.rule[i].antecedent.Mf[j].upper.pert)
                 if self.rules.rule[i].antecedent.Mf[j].lower.pert > maxLower:
                     maxLower = self.rules.rule[i].antecedent.Mf[j].lower.pert
                 if self.rules.rule[i].antecedent.Mf[j].upper.pert > maxUpper:
                     maxUpper = self.rules.rule[i].antecedent.Mf[j].upper.pert
-
+            #print(i,auxL)
+            #print(i,auxU)
             for k in range(self.rules.rule[i].consequent.qtdMf):
                 self.rules.rule[i].consequent.Mf[k].lower.stack.append(maxLower)
                 self.rules.rule[i].consequent.Mf[k].upper.stack.append(maxUpper)
-
+        #print('[+]-------------------------------------------------------------------[+]')
             #print([i,maxUpper,maxLower])
             #print(self.rules.rule[i].consequent.Mf[0].lower.stack)
         for i in range(self.outputs.qtdOutput):
             for j in range(self.outputs.output[i].qtdMf):
+                #print(i,j,self.outputs.output[i].Mf[j].lower.stack)
                 self.outputs.output[i].Mf[j].addPert()
                 self.outputs.output[i].Mf[j].resetstack()
+                #print(i,j,self.outputs.output[i].Mf[j].lower.stack)
 
     def typeReduction(self):
         """ Makes the type reduction step with the Karnik and Mendel algorithm """
@@ -115,7 +122,7 @@ class Ifuzzy2:
             yk = ykGeneral
             delimiter = delimiterGeneral
 
-            # print(yk,delimiter)
+            #print(yk,':',delimiter)
 
             while True:
                 num = 0
@@ -150,16 +157,18 @@ class Ifuzzy2:
             yk = ykGeneral
             delimiter = delimiterGeneral
 
-            # print(yk,delimiter)
+            #print(yk,delimiter)
 
             while True:
                 num = 0
                 den = 5e-324
                 for k in range(delimiter + 1):
+                    print(k,':',delimiter+1)
                     num = num + points[k] * lower[k]
                     den = den + lower[k]
 
                 for k in range(delimiter + 1, self.N + 1):
+                    print(k,':',self.N + 1)
                     num = num + points[k] * upper[k]
                     den = den + upper[k]
 

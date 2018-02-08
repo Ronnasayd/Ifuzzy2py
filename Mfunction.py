@@ -27,12 +27,12 @@ class Mfunction:
         mean=None,
         dp=None,
         x1=None,
-        y1=None,
         x2=None,
-        y2=None,
         x3=None,
-        y3=None,
         x4=None,
+        y1=None,
+        y2=None,
+        y3=None,
         y4=None,
         ):
         """ Creates a Membership function object (flag: Trapezoid = 1 ; Triangle = 2 ; Gaussian = 3)"""
@@ -56,7 +56,7 @@ class Mfunction:
 
     def setPertinence(self, X):
         """ Set internal pertinence for calculations """
-        val = 0.0
+        #val = 0.0
         if self.flag == 1 or self.flag == 2:
 
             if X > self.x1 and X <= self.x2:
@@ -84,7 +84,10 @@ class Mfunction:
 
     def addPert(self):
         """ Adds the resultant pertinence of a inference module to the output membeship function """
-
+        #print(len(self.stack))
+        if len(self.stack) == 0:
+            #print('caiu aki',)
+            self.stack = [0]
         m = 1
         for i in range(len(self.stack)):
             if self.stack[i] < m:
@@ -93,7 +96,7 @@ class Mfunction:
 
     def getPertinence(self, X):
         """ Returns the pertinence for an input data """
-
+        auxVal = 1.0
         if self.flag == 1 or self.flag == 2:
 
             if X > self.x1 and X <= self.x2:
@@ -114,10 +117,10 @@ class Mfunction:
             auxVal = exp(-1 * ((X - self.mean) * (X - self.mean) / (2
                          * self.dp * self.dp)))
         #print(auxVal,"-",self.pert)
-        #if abs(1-auxVal)<0.000001:
-            #auxVal = 1.0
-        #if abs(auxVal) < 0.000001:
-            #auxVal = 0.0
+        if abs(1-auxVal)<0.000001:
+            auxVal = 1.0
+        if abs(auxVal) < 0.000001:
+            auxVal = 0.0
 
         if auxVal < self.pert:
             return auxVal
